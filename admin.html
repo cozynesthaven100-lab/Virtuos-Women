@@ -300,6 +300,22 @@ const PAGE_SCHEMA = {
     { key: 'welcome_text', label: 'Welcome message', type: 'textarea' },
     { key: 'button_text', label: 'Button text', type: 'text' }
   ]},
+  activities_preview: { label: 'Homepage activities', hint: 'Edit the activity cards shown in the What We Do Together section on the homepage.', fields: [
+    { key: 'heading', label: 'Section heading', type: 'text', default: 'What We Do Together' },
+    { key: 'intro', label: 'Section introduction', type: 'textarea', default: 'Gatherings, prayer meetings, outreach, and more — these are the activities that bring our community to life.' },
+    { key: 'activity_1_category', label: 'Card 1 category', type: 'text', default: 'Fellowship' },
+    { key: 'activity_1_title', label: 'Card 1 title', type: 'text', default: 'Weekly Women’s Gathering' },
+    { key: 'activity_1_description', label: 'Card 1 description', type: 'textarea', default: 'Our main gathering, held every Tuesday from 9:00 AM to 12:00 Noon at Christian Service Church, Jungle Avenue Road, East Legon. All women are welcome.' },
+    { key: 'activity_1_image', label: 'Card 1 image', type: 'image', default: 'https://images.pexels.com/photos/8285735/pexels-photo-8285735.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop' },
+    { key: 'activity_2_category', label: 'Card 2 category', type: 'text', default: 'Prayer' },
+    { key: 'activity_2_title', label: 'Card 2 title', type: 'text', default: 'Prayer Meetings' },
+    { key: 'activity_2_description', label: 'Card 2 description', type: 'textarea', default: 'Time set aside to pray together for healing, guidance, and breakthrough for women and their families.' },
+    { key: 'activity_2_image', label: 'Card 2 image', type: 'image', default: 'https://images.pexels.com/photos/24023659/pexels-photo-24023659.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop' },
+    { key: 'activity_3_category', label: 'Card 3 category', type: 'text', default: 'Development' },
+    { key: 'activity_3_title', label: 'Card 3 title', type: 'text', default: 'Seminars & Workshops' },
+    { key: 'activity_3_description', label: 'Card 3 description', type: 'textarea', default: 'Teaching sessions on personal growth, leadership, and everyday life skills, built on Christian values.' },
+    { key: 'activity_3_image', label: 'Card 3 image', type: 'image', default: 'https://images.pexels.com/photos/33714910/pexels-photo-33714910.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop' }
+  ]},
   about: { label: 'About us', hint: 'Who we are and what we stand for.', fields: [
     { key: 'intro', label: 'Introduction', type: 'textarea' },
     { key: 'story', label: 'Our story', type: 'textarea', rows: 8 },
@@ -857,7 +873,7 @@ views.pages = async sub => {
   const byKey = {}; rows.forEach(r => { byKey[r.section_key] = r; });
   const extra = rows.filter(r => !schema.fields.some(f => f.key === r.section_key));
   const fields = [
-    ...schema.fields.map(f => ({ ...f, value: byKey[f.key] && byKey[f.key].content != null ? byKey[f.key].content : '', custom: false })),
+    ...schema.fields.map(f => ({ ...f, value: byKey[f.key] && byKey[f.key].content != null ? byKey[f.key].content : (f.default || ''), custom: false })),
     ...extra.map(r => ({ key: r.section_key, label: r.label || r.section_key, type: r.field_type || 'text', value: r.content == null ? '' : r.content, custom: true }))
   ];
   const fieldHTML = f => {
@@ -953,7 +969,7 @@ views.settings = async () => {
       <section class="setting-card">
         <h2>${ICONS.settings} Connection</h2>
         <p>Services used by this admin workspace.</p>
-        <div class="setting-row"><div><strong>Supabase project</strong><span>${esc(SUPABASE_URL.replace(/^https?:\\/\\//, ''))}</span></div><span class="status">Connected</span></div>
+        <div class="setting-row"><div><strong>Supabase project</strong><span>${esc(SUPABASE_URL.replace(/^https?:\/\//, ''))}</span></div><span class="status">Connected</span></div>
         <div class="setting-row"><div><strong>Media bucket</strong><span>${esc(BUCKET)}</span></div><span class="status">Ready</span></div>
       </section>
       <section class="setting-card">
