@@ -30,6 +30,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--ruby);outline-offset:2px}
 .muted{color:var(--muted)}
 .ic{width:20px;height:20px;flex:none}
+.eyebrow{display:block;color:var(--ruby);font-size:.75rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:10px;border:1px solid transparent;font-weight:600;font-size:.95rem;cursor:pointer;text-decoration:none;background:none;transition:background .15s,border-color .15s,color .15s}
@@ -80,14 +81,15 @@ input:focus,select:focus,textarea:focus{border-color:var(--ruby);outline:2px sol
 
 /* app shell */
 #app{display:grid;grid-template-columns:270px 1fr;min-height:100vh}
-#sidebar{background:var(--plum-800);color:#EDE3F2;position:sticky;top:0;height:100vh;padding:24px 16px calc(20px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:24px;overflow-y:auto}
+#sidebar{background:linear-gradient(180deg,var(--plum-900),var(--plum-800) 65%,var(--plum-700));color:#EDE3F2;position:sticky;top:0;height:100vh;padding:24px 16px calc(20px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:24px;overflow-y:auto;box-shadow:12px 0 30px rgba(31,15,39,.08)}
 .brand{display:flex;gap:12px;align-items:center;padding:0 8px 20px;border-bottom:1px solid var(--gold)}
 .brand strong{display:block;font-family:var(--serif);font-weight:400;font-size:1.1rem;line-height:1.2;color:#fff}
 .brand span{font-size:.8rem;color:var(--plum-300)}
 #nav{display:flex;flex-direction:column;gap:4px;flex:1}
-#nav a{display:flex;align-items:center;gap:12px;min-height:44px;padding:0 12px;border-radius:10px;text-decoration:none;color:#DCCBE4;font-weight:500}
+#nav a{display:flex;align-items:center;gap:12px;min-height:46px;padding:0 12px;border-radius:10px;text-decoration:none;color:#DCCBE4;font-weight:500;border:1px solid transparent}
 #nav a:hover{background:rgba(255,255,255,.07);color:#fff}
-#nav a[aria-current=page]{background:var(--ruby);color:#fff}
+#nav a[aria-current=page]{background:var(--ruby);border-color:rgba(255,255,255,.12);color:#fff;box-shadow:0 8px 18px rgba(156,31,82,.25)}
+#nav a .ic{width:18px;height:18px;opacity:.9}
 .side-foot{display:flex;flex-direction:column;gap:10px}
 .side-foot a{color:var(--plum-300);font-size:.9rem;padding:0 8px}
 .who{font-size:.8rem;color:var(--plum-300);padding:0 8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -119,6 +121,19 @@ input:focus,select:focus,textarea:focus{border-color:var(--ruby);outline:2px sol
 @media(max-width:860px){.split{grid-template-columns:1fr}}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px}
 .panel>h2{margin-bottom:14px}
+.settings-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.setting-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+.setting-card h2{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.setting-card h2 .ic{color:var(--ruby);width:19px;height:19px}
+.setting-card>p{color:var(--muted);font-size:.9rem;margin-bottom:18px}
+.setting-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;border-top:1px solid var(--line)}
+.setting-row:first-of-type{border-top:0;padding-top:0}
+.setting-row strong{display:block;font-size:.9rem}
+.setting-row span{display:block;color:var(--muted);font-size:.82rem;overflow-wrap:anywhere}
+.status{display:inline-flex;align-items:center;gap:7px;color:var(--ok);font-size:.85rem;font-weight:600}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.setting-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+@media(max-width:700px){.settings-grid{grid-template-columns:1fr}.setting-row{align-items:flex-start;flex-direction:column;gap:8px}}
 .plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
 .plain li{display:flex;flex-direction:column;gap:2px}
 .plain .when{font-size:.875rem;color:var(--muted)}
@@ -344,14 +359,16 @@ const ICONS = {
   close: svg('<path d="M6 6l12 12M18 6L6 18"/>'),
   up: svg('<path d="M6 14l6-6 6 6"/>'),
   down: svg('<path d="M6 10l6 6 6-6"/>'),
-  menu: svg('<path d="M4 7h16M4 12h16M4 17h16"/>')
+  menu: svg('<path d="M4 7h16M4 12h16M4 17h16"/>'),
+  settings: svg('<path d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z"/><path d="M19.4 15a1.7 1.7 0 00.34 1.88l.06.06-1.7 1.7-.06-.06a1.7 1.7 0 00-1.88-.34 1.7 1.7 0 00-1.04 1.56V20h-2.4v-.2a1.7 1.7 0 00-1.04-1.56 1.7 1.7 0 00-1.88.34l-.06.06-1.7-1.7.06-.06A1.7 1.7 0 008.44 15 1.7 1.7 0 006.88 14H6.7v-2.4h.18a1.7 1.7 0 001.56-1.04 1.7 1.7 0 00-.34-1.88l-.06-.06 1.7-1.7.06.06a1.7 1.7 0 001.88.34A1.7 1.7 0 0012.72 5.8V5h2.4v.2a1.7 1.7 0 001.04 1.56 1.7 1.7 0 001.88-.34l.06-.06 1.7 1.7-.06.06A1.7 1.7 0 0019.4 10c.22.64.82 1.04 1.5 1.04h.4v2.4h-.4A1.7 1.7 0 0019.4 15z"/>')
 };
 const NAV = [
   { id: 'dashboard', label: 'Overview', icon: ICONS.overview },
   { id: 'programmes', label: 'Activities and programmes', icon: ICONS.calendar },
   { id: 'leadership', label: 'Leadership', icon: ICONS.users },
   { id: 'gallery', label: 'Gallery', icon: ICONS.image },
-  { id: 'pages', label: 'Page content', icon: ICONS.file }
+  { id: 'pages', label: 'Page content', icon: ICONS.file },
+  { id: 'settings', label: 'Settings', icon: ICONS.settings }
 ];
 
 /* ---------- helpers ---------- */
@@ -914,6 +931,49 @@ views.pages = async sub => {
           }
         });
       });
+    }
+  };
+};
+
+/* Settings */
+views.settings = async () => {
+  const email = state.user && state.user.email ? state.user.email : 'Signed-in administrator';
+  const siteUrl = SITE_URL || 'Local development site';
+  const html = `
+    <div class="page-head">
+      <div><span class="eyebrow">Control room</span><h1>Settings</h1><p class="lede">Keep your admin account, website access, and media connection in order.</p></div>
+    </div>
+    <div class="settings-grid">
+      <section class="setting-card">
+        <h2>${ICONS.users} Account</h2>
+        <p>Your authenticated Supabase administrator account.</p>
+        <div class="setting-row"><div><strong>Email address</strong><span>${esc(email)}</span></div><span class="status">Signed in</span></div>
+        <div class="setting-actions"><button class="btn btn-primary btn-sm" type="button" id="changePassword">Change password</button><button class="btn btn-quiet btn-sm" type="button" id="settingsSignOut">Sign out</button></div>
+      </section>
+      <section class="setting-card">
+        <h2>${ICONS.settings} Connection</h2>
+        <p>Services used by this admin workspace.</p>
+        <div class="setting-row"><div><strong>Supabase project</strong><span>${esc(SUPABASE_URL.replace(/^https?:\\/\\//, ''))}</span></div><span class="status">Connected</span></div>
+        <div class="setting-row"><div><strong>Media bucket</strong><span>${esc(BUCKET)}</span></div><span class="status">Ready</span></div>
+      </section>
+      <section class="setting-card">
+        <h2>${ICONS.file} Website access</h2>
+        <p>Shortcuts for reviewing the public website and deployment.</p>
+        <div class="setting-row"><div><strong>Website address</strong><span>${esc(siteUrl)}</span></div></div>
+        <div class="setting-actions">${SITE_URL ? `<a class="btn btn-primary btn-sm" href="${esc(SITE_URL)}" target="_blank" rel="noopener">Open website</a>` : '<span class="help">Add SITE_URL in admin.html to show a live-site shortcut.</span>'}</div>
+      </section>
+      <section class="setting-card">
+        <h2>${ICONS.image} Media guidance</h2>
+        <p>Images are resized and converted before upload for faster pages.</p>
+        <div class="setting-row"><div><strong>Accepted formats</strong><span>JPG, PNG, WebP and other browser-supported images</span></div></div>
+        <div class="setting-row"><div><strong>Maximum working size</strong><span>Images are scaled to 1,800px on their longest edge</span></div></div>
+      </section>
+    </div>`;
+  return {
+    title: 'Settings', html,
+    mount() {
+      $('#changePassword').onclick = passwordForm;
+      $('#settingsSignOut').onclick = async () => { if (sb) await sb.auth.signOut(); };
     }
   };
 };
