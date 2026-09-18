@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Virtuous Women of Destiny admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Gloock&display=swap" rel="stylesheet">
+<style>
+:root{
+  --plum-900:#1F0F27; --plum-800:#2B1636; --plum-700:#3D2149; --plum-300:#CDBBD6;
+  --ruby:#9C1F52; --ruby-dark:#7C163F; --ruby-tint:#F7E6EE;
+  --gold:#C79A3B;
+  --bg:#F8F5F9; --surface:#FFFFFF; --line:#E6DEEA; --text:#25182D; --muted:#6F6379;
+  --ok:#1F7A55; --ok-tint:#E1F3E9; --warn:#7F5200; --warn-tint:#FBEED0; --danger:#B3261E; --danger-tint:#FBE6E4;
+  --serif:'Gloock', Georgia, 'Times New Roman', serif;
+  --sans:'Figtree', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+*{box-sizing:border-box}
+html{color-scheme:light}
+body{margin:0;font-family:var(--sans);font-size:16px;line-height:1.5;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.15;margin:0}
+h1{font-size:clamp(1.8rem,4vw,2.5rem)} h2{font-size:1.35rem} h3{font-size:1.125rem}
+p{margin:0}
+a{color:inherit}
+[hidden]{display:none !important}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ruby);outline-offset:2px}
+.muted{color:var(--muted)}
+.ic{width:20px;height:20px;flex:none}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:10px;border:1px solid transparent;font-weight:600;font-size:.95rem;cursor:pointer;text-decoration:none;background:none;transition:background .15s,border-color .15s,color .15s}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn-primary{background:var(--ruby);color:#fff}
+.btn-primary:hover:not(:disabled){background:var(--ruby-dark)}
+.btn-quiet{background:var(--surface);border-color:var(--line);color:var(--text)}
+.btn-quiet:hover:not(:disabled){border-color:var(--ruby);color:var(--ruby)}
+.btn-danger{background:var(--danger);color:#fff}
+.btn-danger-quiet{background:var(--surface);border-color:var(--line);color:var(--danger)}
+.btn-danger-quiet:hover:not(:disabled){border-color:var(--danger);background:var(--danger-tint)}
+.btn-text{min-height:36px;padding:0 8px;color:var(--ruby);background:none}
+.btn-text:hover{text-decoration:underline}
+.btn-danger-text{color:var(--danger)}
+.btn-ghost{color:#EBDDF1;border-color:rgba(255,255,255,.22)}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.btn-sm{min-height:36px;padding:0 12px;font-size:.875rem}
+.btn-block{width:100%}
+.icon-btn{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--surface);cursor:pointer}
+.icon-btn:hover:not(:disabled){border-color:var(--ruby);color:var(--ruby)}
+.icon-btn:disabled{opacity:.35;cursor:not-allowed}
+
+/* forms */
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.field label,.field .lbl{font-weight:600;font-size:.925rem}
+.field-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.help{font-size:.85rem;color:var(--muted)}
+input[type=text],input[type=email],input[type=password],input[type=date],input[type=time],input:not([type]),select,textarea{width:100%;min-height:44px;padding:10px 12px;border:1px solid #CFC4D4;border-radius:10px;background:#fff}
+textarea{resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{border-color:var(--ruby);outline:2px solid var(--ruby-tint);outline-offset:0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.check{display:flex;align-items:center;gap:10px;min-height:44px;font-weight:500}
+.check input{width:20px;height:20px;accent-color:var(--ruby)}
+.form-error{color:var(--danger);font-size:.9rem;min-height:0}
+.form-error:empty{display:none}
+.notice{padding:12px 14px;border-radius:10px;background:var(--warn-tint);color:var(--warn);font-size:.9rem}
+
+/* login */
+.login{min-height:100vh;display:grid;grid-template-columns:1.1fr 1fr}
+.login-art{background:var(--plum-800);color:#F3EAF6;padding:clamp(28px,6vw,72px);display:flex;flex-direction:column;justify-content:space-between;gap:40px}
+.login-art h1{color:#fff;font-size:clamp(2.1rem,5vw,3.5rem);max-width:11ch}
+.login-art p{max-width:36ch;color:var(--plum-300)}
+.login-card{align-self:center;justify-self:center;width:min(420px,100% - 32px);padding:32px 0;display:flex;flex-direction:column;gap:6px}
+.login-card h2{font-size:1.7rem;margin-bottom:4px}
+.login-card .field{margin:12px 0 4px}
+.login-card .btn-block{margin-top:12px}
+@media(max-width:820px){.login{grid-template-columns:1fr}.login-art{padding:28px 24px;gap:24px}}
+
+/* app shell */
+#app{display:grid;grid-template-columns:270px 1fr;min-height:100vh}
+#sidebar{background:var(--plum-800);color:#EDE3F2;position:sticky;top:0;height:100vh;padding:24px 16px calc(20px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:24px;overflow-y:auto}
+.brand{display:flex;gap:12px;align-items:center;padding:0 8px 20px;border-bottom:1px solid var(--gold)}
+.brand strong{display:block;font-family:var(--serif);font-weight:400;font-size:1.1rem;line-height:1.2;color:#fff}
+.brand span{font-size:.8rem;color:var(--plum-300)}
+#nav{display:flex;flex-direction:column;gap:4px;flex:1}
+#nav a{display:flex;align-items:center;gap:12px;min-height:44px;padding:0 12px;border-radius:10px;text-decoration:none;color:#DCCBE4;font-weight:500}
+#nav a:hover{background:rgba(255,255,255,.07);color:#fff}
+#nav a[aria-current=page]{background:var(--ruby);color:#fff}
+.side-foot{display:flex;flex-direction:column;gap:10px}
+.side-foot a{color:var(--plum-300);font-size:.9rem;padding:0 8px}
+.who{font-size:.8rem;color:var(--plum-300);padding:0 8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.main{min-width:0}
+.topbar{display:none}
+#view{padding:36px clamp(16px,4vw,48px) 80px;max-width:1080px;outline:none}
+.scrim{display:none}
+@media(max-width:860px){
+  #app{grid-template-columns:1fr}
+  #sidebar{position:fixed;inset:0 auto 0 0;width:min(300px,86vw);z-index:40;transform:translateX(-100%);transition:transform .2s ease}
+  body.nav-open #sidebar{transform:none}
+  body.nav-open .scrim{display:block;position:fixed;inset:0;background:rgba(20,8,26,.5);z-index:30}
+  .topbar{display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:20;background:var(--surface);border-bottom:1px solid var(--line);padding:calc(8px + env(safe-area-inset-top,0px)) 12px 8px}
+  .topbar span{font-family:var(--serif);font-size:1.1rem}
+  #view{padding-top:24px}
+}
+
+/* page pieces */
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.lede{color:var(--muted);margin-top:8px;max-width:56ch}
+.hello{margin-bottom:28px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.tile{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"i n" "l l";gap:4px 12px;align-items:center;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:14px;text-decoration:none}
+.tile:hover{border-color:var(--ruby)}
+.tile .ic{grid-area:i;color:var(--ruby)}
+.tile strong{grid-area:n;font-family:var(--serif);font-weight:400;font-size:2rem;line-height:1;justify-self:end}
+.tile span{grid-area:l;color:var(--muted);font-size:.925rem;margin-top:8px}
+.split{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
+@media(max-width:860px){.split{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px}
+.panel>h2{margin-bottom:14px}
+.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.plain li{display:flex;flex-direction:column;gap:2px}
+.plain .when{font-size:.875rem;color:var(--muted)}
+.actions-col{display:flex;flex-direction:column;gap:10px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.chip{display:inline-flex;align-items:center;min-height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);cursor:pointer;text-decoration:none;font-size:.9rem;font-weight:500}
+.chip:hover{border-color:var(--ruby)}
+.chip[aria-pressed=true],.chip[aria-current=page]{background:var(--plum-800);border-color:var(--plum-800);color:#fff}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:.78rem;font-weight:600;white-space:nowrap}
+.pill-ok{background:var(--ok-tint);color:var(--ok)}
+.pill-warn{background:var(--warn-tint);color:var(--warn)}
+.tag{display:inline-block;padding:1px 9px;border-radius:6px;background:var(--ruby-tint);color:var(--ruby-dark);font-size:.8rem;font-weight:600}
+.empty{background:var(--surface);border:1px dashed #CFC4D4;border-radius:14px;padding:40px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+.empty p{color:var(--muted);max-width:44ch;margin-bottom:6px}
+.stack{display:flex;flex-direction:column;gap:12px}
+.spinner{padding:60px 0;text-align:center;color:var(--muted)}
+
+/* list items */
+.item{display:grid;grid-template-columns:104px 1fr auto;gap:16px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px}
+.thumb{width:104px;height:78px;border-radius:8px;overflow:hidden;background:var(--ruby-tint);display:grid;place-items:center;color:var(--ruby)}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.item-title{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.item-meta{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;margin-top:6px;font-size:.875rem;color:var(--muted)}
+.item-meta span{display:inline-flex;align-items:center;gap:6px}
+.item-meta .ic{width:16px;height:16px}
+.item-meta .tag{color:var(--ruby-dark)}
+.item-desc{margin-top:8px;color:#4A3D52;font-size:.925rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.item-actions{display:flex;flex-direction:column;gap:8px}
+@media(max-width:700px){
+  .item{grid-template-columns:76px 1fr}
+  .thumb{width:76px;height:76px}
+  .item-actions{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}
+}
+
+/* leadership */
+.leaders{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.leader{display:flex;flex-direction:column;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.leader-top{display:flex;gap:14px;align-items:center}
+.avatar{width:72px;height:72px;border-radius:50%;overflow:hidden;background:var(--plum-700);color:#F3EAF6;display:grid;place-items:center;font-family:var(--serif);font-size:1.4rem;flex:none}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.role{color:var(--ruby-dark);font-weight:600;font-size:.9rem}
+.bio{color:#4A3D52;font-size:.925rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.leader-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:auto}
+.leader-actions .spacer{flex:1}
+
+/* gallery */
+.shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.shot{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.shot img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:var(--ruby-tint)}
+.shot figcaption{padding:10px 12px 4px;font-size:.9rem;min-height:2.4em}
+.shot .album{display:block;font-size:.8rem;color:var(--muted);margin-top:2px}
+.shot-actions{display:flex;gap:6px;padding:8px 12px 12px}
+.progress{margin-top:8px}
+.progress .track{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.progress .bar{height:100%;width:0;background:var(--ruby);transition:width .2s}
+.progress span{font-size:.85rem;color:var(--muted)}
+
+/* page content editor */
+.tabs{margin-bottom:20px}
+#pageForm{padding:0}
+.form-body{padding:24px 24px 8px}
+.form-body .lede{margin:0 0 20px}
+.savebar{position:sticky;bottom:0;display:flex;gap:12px;align-items:center;justify-content:flex-end;flex-wrap:wrap;background:rgba(255,255,255,.96);border-top:1px solid var(--line);border-radius:0 0 14px 14px;padding:12px 24px calc(12px + env(safe-area-inset-bottom,0px))}
+.savebar .note{margin-right:auto;font-size:.9rem;color:var(--muted)}
+.savebar .note.dirty{color:var(--warn);font-weight:600}
+
+/* image picker */
+.picker{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.picker-preview{background:var(--ruby-tint);border:1px solid var(--line);overflow:hidden;display:grid;place-items:center;color:var(--muted);font-size:.8rem;text-align:center;flex:none}
+.picker-preview img{width:100%;height:100%;object-fit:cover;display:block}
+.picker-preview.rect{width:132px;height:100px;border-radius:10px}
+.picker-preview.wide{width:200px;height:112px;border-radius:10px}
+.picker-preview.round{width:96px;height:96px;border-radius:50%}
+.picker-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.picker-status{font-size:.85rem;color:var(--muted);max-width:32ch}
+
+/* dialogs */
+dialog.modal{border:0;padding:0;border-radius:16px;width:min(560px,calc(100vw - 24px));max-height:calc(100dvh - 24px);box-shadow:0 20px 60px rgba(31,15,39,.35);color:var(--text)}
+dialog.modal::backdrop{background:rgba(31,15,39,.55)}
+dialog.modal-sm{width:min(420px,calc(100vw - 24px))}
+.modal-form{display:flex;flex-direction:column;max-height:calc(100dvh - 24px)}
+.modal-head{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line)}
+.modal-body{padding:20px;overflow-y:auto}
+.modal-body h2{margin-bottom:8px}
+.modal-foot{display:flex;gap:10px;justify-content:flex-end;align-items:center;flex-wrap:wrap;padding:14px 20px calc(14px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line)}
+.modal-foot .form-error{margin-right:auto;flex:1 1 100%}
+@media(max-width:520px){.row2{grid-template-columns:1fr}}
+
+/* toasts */
+#toasts{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;flex-direction:column;gap:8px;z-index:100;width:min(92vw,380px)}
+.toast{background:var(--plum-900);color:#fff;padding:12px 16px;border-radius:10px;font-size:.925rem;box-shadow:0 8px 24px rgba(0,0,0,.25);transition:opacity .3s}
+.toast.err{background:var(--danger)}
+.toast.out{opacity:0}
+@media(prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+</head>
+<body>
+
+<!-- Sign in -->
+<div id="login" class="login" hidden>
+  <div class="login-art">
+    <svg viewBox="0 0 32 32" width="44" height="44" aria-hidden="true"><path d="M16 3l11 8-11 18L5 11z" fill="none" stroke="#C79A3B" stroke-width="1.6" stroke-linejoin="round"/><path d="M5 11h22M11 11l5-8 5 8M11 11l5 18 5-18" fill="none" stroke="#C79A3B" stroke-width="1.2" stroke-linejoin="round"/></svg>
+    <div>
+      <h1>Virtuous Women of Destiny</h1>
+      <p style="margin-top:16px">Post programmes, update leadership, add photos and edit the words on every page of the website.</p>
+    </div>
+  </div>
+  <form class="login-card" id="loginForm">
+    <h2>Sign in</h2>
+    <p class="muted">Use the admin email and password you were given.</p>
+    <div id="setupNotice" class="notice" hidden style="margin-top:12px">This page is not connected yet. Open admin.html in a text editor and paste your Supabase URL and anon key at the top of the script.</div>
+    <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="username" required></div>
+    <div class="field"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div>
+    <p class="form-error" id="loginError" role="alert"></p>
+    <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+    <button class="btn btn-text" type="button" id="forgot">Forgot password?</button>
+  </form>
+</div>
+
+<!-- Admin -->
+<div id="app" hidden>
+  <div class="scrim" id="scrim"></div>
+  <aside id="sidebar" aria-label="Main">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" width="34" height="34" aria-hidden="true"><path d="M16 3l11 8-11 18L5 11z" fill="none" stroke="#C79A3B" stroke-width="1.6" stroke-linejoin="round"/><path d="M5 11h22M11 11l5-8 5 8M11 11l5 18 5-18" fill="none" stroke="#C79A3B" stroke-width="1.2" stroke-linejoin="round"/></svg>
+      <div><strong>Virtuous Women of Destiny</strong><span>Website admin</span></div>
+    </div>
+    <nav id="nav" aria-label="Sections"></nav>
+    <div class="side-foot">
+      <a id="siteLink" href="#" target="_blank" rel="noopener" hidden>View website</a>
+      <div class="who" id="who"></div>
+      <button class="btn btn-ghost btn-sm" id="signOut" type="button">Sign out</button>
+    </div>
+  </aside>
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn" id="menuBtn" type="button" aria-label="Open menu"></button>
+      <span id="topTitle">Overview</span>
+    </header>
+    <main id="view" tabindex="-1"></main>
+  </div>
+</div>
+<div id="toasts" aria-live="polite"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+(function () {
+'use strict';
+
+/* ================= SETTINGS: edit these ================= */
+const SUPABASE_URL = 'https://vvevkfxmegrzaqxbkpnr.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_XnVgu6OYb7bMVWlh2te7gQ_cq8GxCyg';
+const BUCKET = 'vwd-media';                          // storage bucket created by supabase-setup.sql
+const SITE_URL = '';                                 // optional, e.g. https://yoursite.netlify.app
+
+/* Text and images the admin can edit on each page.
+   key = the id your website reads (data-cms="page.key"). type = text | textarea | image. */
+const PAGE_SCHEMA = {
+  home: { label: 'Home', hint: 'What visitors see first.', fields: [
+    { key: 'hero_title', label: 'Main headline', type: 'text', default: 'Virtuous Women of Destiny' },
+    { key: 'hero_subtitle', label: 'Line under the headline', type: 'text' },
+    { key: 'hero_image', label: 'Banner photo', type: 'image' },
+    { key: 'welcome_heading', label: 'Welcome heading', type: 'text' },
+    { key: 'welcome_text', label: 'Welcome message', type: 'textarea' },
+    { key: 'button_text', label: 'Button text', type: 'text' }
+  ]},
+  about: { label: 'About us', hint: 'Who we are and what we stand for.', fields: [
+    { key: 'intro', label: 'Introduction', type: 'textarea' },
+    { key: 'story', label: 'Our story', type: 'textarea', rows: 8 },
+    { key: 'mission', label: 'Mission', type: 'textarea' },
+    { key: 'vision', label: 'Vision', type: 'textarea' },
+    { key: 'core_values', label: 'Core values', type: 'textarea', help: 'Put each value on its own line.' },
+    { key: 'about_image', label: 'Photo', type: 'image' }
+  ]},
+  programmes: { label: 'Programmes page', hint: 'The words around your list of programmes and activities.', fields: [
+    { key: 'heading', label: 'Page heading', type: 'text' },
+    { key: 'intro', label: 'Introduction', type: 'textarea' }
+  ]},
+  leadership: { label: 'Leadership page', hint: 'The words around your list of leaders.', fields: [
+    { key: 'heading', label: 'Page heading', type: 'text' },
+    { key: 'intro', label: 'Introduction', type: 'textarea' }
+  ]},
+  gallery: { label: 'Gallery page', hint: 'The words above your photos.', fields: [
+    { key: 'heading', label: 'Page heading', type: 'text' },
+    { key: 'intro', label: 'Introduction', type: 'textarea' }
+  ]},
+  contact: { label: 'Contact', hint: 'How people can reach you.', fields: [
+    { key: 'address', label: 'Address', type: 'textarea', rows: 3 },
+    { key: 'phone', label: 'Phone', type: 'text' },
+    { key: 'whatsapp', label: 'WhatsApp number', type: 'text' },
+    { key: 'email', label: 'Email', type: 'text' },
+    { key: 'meeting_times', label: 'Meeting days and times', type: 'textarea', rows: 3 },
+    { key: 'facebook', label: 'Facebook link', type: 'text' },
+    { key: 'instagram', label: 'Instagram link', type: 'text' },
+    { key: 'youtube', label: 'YouTube link', type: 'text' }
+  ]},
+  footer: { label: 'Footer', hint: 'Shown at the bottom of every page.', fields: [
+    { key: 'tagline', label: 'Tagline', type: 'text' },
+    { key: 'copyright', label: 'Copyright line', type: 'text' }
+  ]}
+};
+/* ======================================================== */
+
+const configured = !/^YOUR_/.test(SUPABASE_URL) && !/^YOUR_/.test(SUPABASE_ANON_KEY);
+const sb = configured ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+const $ = (s, r = document) => r.querySelector(s);
+const has = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
+const esc = v => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const nz = v => (v === '' || v == null) ? null : v;
+const state = { user: null, dirty: false, progFilter: 'all', galAlbum: 'all', recovery: false };
+
+/* ---------- icons ---------- */
+const svg = (p, cls = 'ic') => `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const ICONS = {
+  overview: svg('<path d="M4 4h7v9H4zM13 4h7v5h-7zM13 11h7v9h-7zM4 15h7v5H4z"/>'),
+  calendar: svg('<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M8 3v4M16 3v4M3.5 10h17"/>'),
+  users: svg('<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6M16 4.8a3.5 3.5 0 010 6.4M18 14.4c2.2.7 3.5 2.6 3.5 5.6"/>'),
+  image: svg('<rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/>'),
+  file: svg('<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/>'),
+  pin: svg('<path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0113 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>'),
+  plus: svg('<path d="M12 5v14M5 12h14"/>'),
+  close: svg('<path d="M6 6l12 12M18 6L6 18"/>'),
+  up: svg('<path d="M6 14l6-6 6 6"/>'),
+  down: svg('<path d="M6 10l6 6 6-6"/>'),
+  menu: svg('<path d="M4 7h16M4 12h16M4 17h16"/>')
+};
+const NAV = [
+  { id: 'dashboard', label: 'Overview', icon: ICONS.overview },
+  { id: 'programmes', label: 'Activities and programmes', icon: ICONS.calendar },
+  { id: 'leadership', label: 'Leadership', icon: ICONS.users },
+  { id: 'gallery', label: 'Gallery', icon: ICONS.image },
+  { id: 'pages', label: 'Page content', icon: ICONS.file }
+];
+
+/* ---------- helpers ---------- */
+const todayStr = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+const fmtDate = d => d ? new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }) : '';
+const fmtTime = t => { if (!t) return ''; const [h, m] = t.split(':'); const hr = +h; return ((hr + 11) % 12 + 1) + ':' + m + ' ' + (hr >= 12 ? 'PM' : 'AM'); };
+const initials = n => String(n || '').split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('');
+
+async function q(promise) { const { data, error } = await promise; if (error) throw error; return data; }
+async function count(table) { const { count: c, error } = await sb.from(table).select('*', { count: 'exact', head: true }); if (error) throw error; return c || 0; }
+
+function friendlyError(e) {
+  const m = (e && (e.message || e.error_description)) || String(e);
+  if (/does not exist|schema cache|Could not find the table/i.test(m)) return 'The database tables are not set up yet. Run supabase-setup.sql in the Supabase SQL editor, then try again.';
+  if (/Bucket not found/i.test(m)) return 'The photo storage bucket is missing. Run supabase-setup.sql to create it.';
+  if (/row-level security|permission denied|JWT/i.test(m)) return 'You are not allowed to do that. Sign out, sign in again and retry.';
+  if (/Failed to fetch|NetworkError|Load failed/i.test(m)) return 'Could not reach the server. Check your internet connection and try again.';
+  return m;
+}
+
+function toast(msg, type) {
+  const t = document.createElement('div');
+  t.className = 'toast' + (type === 'err' ? ' err' : '');
+  t.textContent = msg;
+  $('#toasts').appendChild(t);
+  setTimeout(() => t.classList.add('out'), 3200);
+  setTimeout(() => t.remove(), 3600);
+}
+
+const emptyState = (title, text, btnLabel, btnId) =>
+  `<div class="empty"><h2>${esc(title)}</h2><p>${esc(text)}</p>${btnLabel ? `<button class="btn btn-primary" id="${btnId}" type="button">${esc(btnLabel)}</button>` : ''}</div>`;
+
+/* ---------- images ---------- */
+async function prepareImage(file) {
+  if (!/^image\//.test(file.type)) throw new Error('Choose an image file (JPG, PNG or WebP).');
+  try {
+    const bmp = await createImageBitmap(file);
+    const scale = Math.min(1, 1800 / Math.max(bmp.width, bmp.height));
+    const w = Math.round(bmp.width * scale), h = Math.round(bmp.height * scale);
+    const c = document.createElement('canvas'); c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, w, h); ctx.drawImage(bmp, 0, 0, w, h);
+    const blob = await new Promise(r => c.toBlob(r, 'image/jpeg', 0.86));
+    if (blob) return { blob, ext: 'jpg', type: 'image/jpeg' };
+  } catch (e) { /* fall back to the original file */ }
+  const ext = ((file.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '')) || 'jpg';
+  return { blob: file, ext, type: file.type || 'image/jpeg' };
+}
+async function uploadImage(file, folder) {
+  const img = await prepareImage(file);
+  const path = folder + '/' + Date.now() + '-' + Math.random().toString(36).slice(2, 8) + '.' + img.ext;
+  const { error } = await sb.storage.from(BUCKET).upload(path, img.blob, { contentType: img.type, cacheControl: '31536000' });
+  if (error) throw error;
+  return { url: sb.storage.from(BUCKET).getPublicUrl(path).data.publicUrl, path };
+}
+function imagePickerHTML(name, url, folder, shape) {
+  return `<div class="picker" data-picker data-folder="${esc(folder)}">
+    <input type="hidden" name="${esc(name)}" value="${esc(url || '')}">
+    <div class="picker-preview ${shape || 'rect'}">${url ? `<img src="${esc(url)}" alt="">` : '<span>No photo yet</span>'}</div>
+    <div class="picker-actions">
+      <label class="btn btn-quiet btn-sm" style="cursor:pointer">Choose photo<input type="file" accept="image/*" hidden></label>
+      <button type="button" class="btn btn-text btn-sm" data-remove ${url ? '' : 'hidden'}>Remove photo</button>
+      <span class="picker-status" aria-live="polite"></span>
+    </div>
+  </div>`;
+}
+function wirePickers(root) {
+  root.querySelectorAll('[data-picker]').forEach(p => {
+    const hidden = p.querySelector('input[type=hidden]');
+    const file = p.querySelector('input[type=file]');
+    const prev = p.querySelector('.picker-preview');
+    const status = p.querySelector('.picker-status');
+    const rm = p.querySelector('[data-remove]');
+    const form = p.closest('form');
+    const bump = d => { form.dataset.uploads = String((+form.dataset.uploads || 0) + d); };
+    const changed = () => hidden.dispatchEvent(new Event('input', { bubbles: true }));
+    file.addEventListener('change', async () => {
+      const f = file.files[0];
+      if (!f) return;
+      status.textContent = 'Uploading photo…';
+      bump(1);
+      try {
+        const up = await uploadImage(f, p.dataset.folder);
+        hidden.value = up.url;
+        prev.innerHTML = `<img src="${esc(up.url)}" alt="">`;
+        rm.hidden = false;
+        status.textContent = 'Photo ready';
+        changed();
+      } catch (ex) { status.textContent = friendlyError(ex); }
+      finally { bump(-1); file.value = ''; }
+    });
+    rm.addEventListener('click', () => {
+      hidden.value = '';
+      prev.innerHTML = '<span>No photo yet</span>';
+      rm.hidden = true;
+      status.textContent = '';
+      changed();
+    });
+  });
+}
+
+/* ---------- dialogs ---------- */
+function openModal({ title, body, submitLabel = 'Save', busyLabel = 'Saving…', onSubmit }) {
+  const dlg = document.createElement('dialog');
+  dlg.className = 'modal';
+  dlg.innerHTML = `<form class="modal-form">
+    <header class="modal-head"><h2>${esc(title)}</h2><button type="button" class="icon-btn" data-close aria-label="Close">${ICONS.close}</button></header>
+    <div class="modal-body">${body}</div>
+    <footer class="modal-foot"><p class="form-error" role="alert"></p>
+      <button type="button" class="btn btn-quiet" data-close>Cancel</button>
+      <button type="submit" class="btn btn-primary">${esc(submitLabel)}</button>
+    </footer></form>`;
+  document.body.appendChild(dlg);
+  const form = dlg.querySelector('form');
+  const err = dlg.querySelector('.form-error');
+  const close = () => { if (dlg.open) dlg.close(); };
+  dlg.addEventListener('close', () => dlg.remove());
+  dlg.addEventListener('click', e => { if (e.target === dlg && !dlg.dataset.busy) close(); });
+  dlg.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', () => { if (!dlg.dataset.busy) close(); }));
+  wirePickers(dlg);
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if ((+form.dataset.uploads || 0) > 0) { err.textContent = 'Wait for the photo to finish uploading, then save.'; return; }
+    err.textContent = '';
+    const btn = form.querySelector('[type=submit]');
+    const label = btn.textContent;
+    btn.disabled = true; btn.textContent = busyLabel; dlg.dataset.busy = '1';
+    try { await onSubmit(new FormData(form), dlg); close(); }
+    catch (ex) { err.textContent = friendlyError(ex); btn.disabled = false; btn.textContent = label; delete dlg.dataset.busy; }
+  });
+  dlg.showModal();
+  if (window.matchMedia('(hover:hover)').matches) {
+    const first = dlg.querySelector('.modal-body input:not([type=hidden]):not([type=file]),.modal-body textarea,.modal-body select');
+    if (first) first.focus();
+  }
+  return dlg;
+}
+function confirmDialog({ title, message, confirmLabel = 'Confirm', danger = false }) {
+  return new Promise(resolve => {
+    const dlg = document.createElement('dialog');
+    dlg.className = 'modal modal-sm';
+    dlg.innerHTML = `<div class="modal-form"><div class="modal-body"><h2>${esc(title)}</h2><p class="muted">${esc(message)}</p></div>
+      <footer class="modal-foot"><button type="button" class="btn btn-quiet" data-no>Cancel</button>
+      <button type="button" class="btn ${danger ? 'btn-danger' : 'btn-primary'}" data-yes>${esc(confirmLabel)}</button></footer></div>`;
+    document.body.appendChild(dlg);
+    let result = false;
+    dlg.querySelector('[data-no]').onclick = () => dlg.close();
+    dlg.querySelector('[data-yes]').onclick = () => { result = true; dlg.close(); };
+    dlg.addEventListener('close', () => { dlg.remove(); resolve(result); });
+    dlg.showModal();
+  });
+}
+
+/* ---------- views ---------- */
+const views = {};
+
+/* Overview */
+views.dashboard = async () => {
+  const [nProg, nLead, nPhoto, upcoming] = await Promise.all([
+    count('programmes'), count('leaders'), count('gallery'),
+    q(sb.from('programmes').select('id,title,kind,event_date,event_time,location,is_published').gte('event_date', todayStr()).order('event_date').limit(4))
+  ]);
+  const hr = new Date().getHours();
+  const greet = hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening';
+  const html = `
+    <div class="hello"><h1>${greet}</h1><p class="lede">Choose what you want to update on the website.</p></div>
+    <div class="tiles">
+      <a class="tile" href="#/programmes">${ICONS.calendar}<strong>${nProg}</strong><span>Activities and programmes</span></a>
+      <a class="tile" href="#/leadership">${ICONS.users}<strong>${nLead}</strong><span>Leaders</span></a>
+      <a class="tile" href="#/gallery">${ICONS.image}<strong>${nPhoto}</strong><span>Gallery photos</span></a>
+    </div>
+    <div class="split">
+      <section class="panel"><h2>Coming up</h2>
+        ${upcoming.length ? `<ul class="plain">${upcoming.map(r => `<li><strong>${esc(r.title)}</strong>
+          <span class="when">${esc(fmtDate(r.event_date))}${r.event_time ? ', ' + esc(fmtTime(r.event_time)) : ''}${r.location ? ' at ' + esc(r.location) : ''}</span>
+          ${r.is_published ? '' : '<span class="pill pill-warn" style="align-self:flex-start">Draft</span>'}</li>`).join('')}</ul>`
+          : '<p class="muted">Nothing is scheduled. Post your next programme so members can plan ahead.</p>'}
+      </section>
+      <section class="panel"><h2>Quick actions</h2>
+        <div class="actions-col">
+          <a class="btn btn-primary" href="#/programmes/new">Post a programme</a>
+          <a class="btn btn-quiet" href="#/leadership/new">Add a leader</a>
+          <a class="btn btn-quiet" href="#/gallery/upload">Upload photos</a>
+          <a class="btn btn-quiet" href="#/pages">Edit page text</a>
+        </div>
+      </section>
+    </div>`;
+  return { title: 'Overview', html };
+};
+
+/* Activities and programmes */
+const progCard = r => `
+  <article class="item" data-id="${esc(r.id)}">
+    <div class="thumb">${r.image_url ? `<img src="${esc(r.image_url)}" alt="" loading="lazy">` : ICONS.calendar}</div>
+    <div>
+      <div class="item-title"><h3>${esc(r.title)}</h3><span class="pill ${r.is_published ? 'pill-ok' : 'pill-warn'}">${r.is_published ? 'Published' : 'Draft'}</span></div>
+      <div class="item-meta">
+        <span class="tag">${r.kind === 'activity' ? 'Activity' : 'Programme'}</span>
+        ${r.event_date ? `<span>${ICONS.calendar}${esc(fmtDate(r.event_date))}${r.event_time ? ', ' + esc(fmtTime(r.event_time)) : ''}</span>` : ''}
+        ${r.location ? `<span>${ICONS.pin}${esc(r.location)}</span>` : ''}
+      </div>
+      ${r.description ? `<p class="item-desc">${esc(r.description)}</p>` : ''}
+    </div>
+    <div class="item-actions">
+      <button class="btn btn-quiet btn-sm" data-act="edit" type="button">Edit</button>
+      <button class="btn btn-quiet btn-sm" data-act="toggle" type="button">${r.is_published ? 'Unpublish' : 'Publish'}</button>
+      <button class="btn btn-danger-quiet btn-sm" data-act="delete" type="button">Delete</button>
+    </div>
+  </article>`;
+
+function programmeForm(row) {
+  const r = row || { kind: 'programme', is_published: true };
+  openModal({
+    title: row ? 'Edit post' : 'New post',
+    submitLabel: 'Save post',
+    body: `
+      <div class="field"><label for="f-title">Title</label><input id="f-title" name="title" required maxlength="140" value="${esc(r.title)}" placeholder="e.g. Annual Women's Conference"></div>
+      <div class="row2">
+        <div class="field"><label for="f-kind">Type</label><select id="f-kind" name="kind">
+          <option value="programme" ${r.kind === 'programme' ? 'selected' : ''}>Programme</option>
+          <option value="activity" ${r.kind === 'activity' ? 'selected' : ''}>Activity</option></select></div>
+        <div class="field"><label for="f-vis">Visibility</label><select id="f-vis" name="is_published">
+          <option value="true" ${r.is_published ? 'selected' : ''}>Published on website</option>
+          <option value="false" ${r.is_published ? '' : 'selected'}>Draft (hidden)</option></select></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="f-date">Date</label><input id="f-date" type="date" name="event_date" value="${esc(r.event_date || '')}"></div>
+        <div class="field"><label for="f-time">Time</label><input id="f-time" type="time" name="event_time" value="${esc((r.event_time || '').slice(0, 5))}"></div>
+      </div>
+      <div class="field"><label for="f-loc">Location</label><input id="f-loc" name="location" maxlength="200" value="${esc(r.location)}"></div>
+      <div class="field"><label for="f-desc">Details</label><textarea id="f-desc" name="description" rows="5">${esc(r.description)}</textarea></div>
+      <div class="field"><span class="lbl">Photo</span>${imagePickerHTML('image_url', r.image_url, 'programmes', 'rect')}</div>`,
+    async onSubmit(fd) {
+      const payload = {
+        title: fd.get('title').trim(),
+        kind: fd.get('kind'),
+        is_published: fd.get('is_published') === 'true',
+        event_date: nz(fd.get('event_date')),
+        event_time: nz(fd.get('event_time')),
+        location: nz(fd.get('location').trim()),
+        description: nz(fd.get('description').trim()),
+        image_url: nz(fd.get('image_url'))
+      };
+      if (row) await q(sb.from('programmes').update(payload).eq('id', row.id));
+      else await q(sb.from('programmes').insert(payload));
+      toast(row ? 'Post saved' : 'Post created');
+      route(true);
+    }
+  });
+}
+
+views.programmes = async sub => {
+  const rows = await q(sb.from('programmes').select('*').order('event_date', { ascending: false, nullsFirst: false }).order('created_at', { ascending: false }));
+  const html = `
+    <div class="page-head">
+      <div><h1>Activities and programmes</h1><p class="lede">Posts marked Published appear on the website. Drafts stay hidden until you publish them.</p></div>
+      <button class="btn btn-primary" id="newBtn" type="button">${ICONS.plus} New post</button>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="stack" id="list"></div>`;
+  return {
+    title: 'Activities and programmes', html,
+    mount() {
+      const filters = [['all', 'All'], ['upcoming', 'Upcoming'], ['past', 'Past'], ['draft', 'Drafts']];
+      const chips = $('#chips'), list = $('#list');
+      const draw = () => {
+        const t = todayStr(), f = state.progFilter;
+        chips.innerHTML = filters.map(([k, l]) => `<button class="chip" type="button" data-f="${k}" aria-pressed="${f === k}">${l}</button>`).join('');
+        const shown = rows.filter(r => f === 'all' ? true : f === 'draft' ? !r.is_published : f === 'upcoming' ? (!r.event_date || r.event_date >= t) : (r.event_date && r.event_date < t));
+        list.innerHTML = shown.length ? shown.map(progCard).join('')
+          : rows.length ? emptyState('Nothing here', 'No posts match this filter. Try another one.')
+          : emptyState('No posts yet', 'Post your first programme or activity so members can see what is coming.', 'New post', 'emptyNew');
+        const eb = $('#emptyNew'); if (eb) eb.onclick = () => programmeForm();
+      };
+      chips.addEventListener('click', e => { const b = e.target.closest('[data-f]'); if (b) { state.progFilter = b.dataset.f; draw(); } });
+      list.addEventListener('click', async e => {
+        const b = e.target.closest('[data-act]'); if (!b) return;
+        const row = rows.find(r => r.id === b.closest('.item').dataset.id); if (!row) return;
+        try {
+          if (b.dataset.act === 'edit') programmeForm(row);
+          if (b.dataset.act === 'toggle') {
+            await q(sb.from('programmes').update({ is_published: !row.is_published }).eq('id', row.id));
+            toast(row.is_published ? 'Post unpublished' : 'Post published'); route(true);
+          }
+          if (b.dataset.act === 'delete') {
+            if (await confirmDialog({ title: 'Delete this post?', message: `"${row.title}" will be removed from the website. This cannot be undone.`, confirmLabel: 'Delete post', danger: true })) {
+              await q(sb.from('programmes').delete().eq('id', row.id)); toast('Post deleted'); route(true);
+            }
+          }
+        } catch (ex) { toast(friendlyError(ex), 'err'); }
+      });
+      $('#newBtn').onclick = () => programmeForm();
+      draw();
+      if (sub === 'new') { history.replaceState(null, '', '#/programmes'); programmeForm(); }
+    }
+  };
+};
+
+/* Leadership */
+function leaderForm(row, nextOrder) {
+  const r = row || { is_published: true };
+  openModal({
+    title: row ? 'Edit leader' : 'Add a leader',
+    submitLabel: 'Save leader',
+    body: `
+      <div class="field"><label for="l-name">Full name</label><input id="l-name" name="name" required maxlength="120" value="${esc(r.name)}"></div>
+      <div class="field"><label for="l-role">Position</label><input id="l-role" name="role" required maxlength="120" value="${esc(r.role)}" placeholder="e.g. President"></div>
+      <div class="field"><label for="l-bio">About her</label><textarea id="l-bio" name="bio" rows="5">${esc(r.bio)}</textarea></div>
+      <div class="field"><span class="lbl">Photo</span>${imagePickerHTML('photo_url', r.photo_url, 'leaders', 'round')}</div>
+      <label class="check"><input type="checkbox" name="is_published" ${r.is_published ? 'checked' : ''}> Show on website</label>`,
+    async onSubmit(fd) {
+      const payload = {
+        name: fd.get('name').trim(), role: fd.get('role').trim(),
+        bio: nz(fd.get('bio').trim()), photo_url: nz(fd.get('photo_url')),
+        is_published: fd.get('is_published') === 'on'
+      };
+      if (row) await q(sb.from('leaders').update(payload).eq('id', row.id));
+      else await q(sb.from('leaders').insert({ ...payload, sort_order: nextOrder }));
+      toast(row ? 'Leader saved' : 'Leader added');
+      route(true);
+    }
+  });
+}
+
+views.leadership = async sub => {
+  const rows = await q(sb.from('leaders').select('*').order('sort_order').order('created_at'));
+  const nextOrder = rows.reduce((m, r) => Math.max(m, r.sort_order == null ? 0 : r.sort_order), -1) + 1;
+  const card = (r, i) => `
+    <article class="leader" data-id="${esc(r.id)}">
+      <div class="leader-top">
+        <div class="avatar">${r.photo_url ? `<img src="${esc(r.photo_url)}" alt="" loading="lazy">` : esc(initials(r.name))}</div>
+        <div><h3>${esc(r.name)}</h3><p class="role">${esc(r.role)}</p>${r.is_published ? '' : '<span class="pill pill-warn">Hidden</span>'}</div>
+      </div>
+      ${r.bio ? `<p class="bio">${esc(r.bio)}</p>` : ''}
+      <div class="leader-actions">
+        <button class="icon-btn" type="button" data-act="up" aria-label="Move ${esc(r.name)} up" ${i === 0 ? 'disabled' : ''}>${ICONS.up}</button>
+        <button class="icon-btn" type="button" data-act="down" aria-label="Move ${esc(r.name)} down" ${i === rows.length - 1 ? 'disabled' : ''}>${ICONS.down}</button>
+        <span class="spacer"></span>
+        <button class="btn btn-quiet btn-sm" type="button" data-act="edit">Edit</button>
+        <button class="btn btn-danger-quiet btn-sm" type="button" data-act="delete">Delete</button>
+      </div>
+    </article>`;
+  const html = `
+    <div class="page-head">
+      <div><h1>Leadership</h1><p class="lede">Leaders appear on the website in the order shown here. Use the arrows to reorder.</p></div>
+      <button class="btn btn-primary" id="newBtn" type="button">${ICONS.plus} Add leader</button>
+    </div>
+    ${rows.length ? `<div class="leaders" id="grid">${rows.map(card).join('')}</div>` : emptyState('No leaders yet', 'Add the women who lead the ministry so visitors can meet them.', 'Add leader', 'emptyNew')}`;
+  return {
+    title: 'Leadership', html,
+    mount() {
+      $('#newBtn').onclick = () => leaderForm(null, nextOrder);
+      const eb = $('#emptyNew'); if (eb) eb.onclick = () => leaderForm(null, nextOrder);
+      const grid = $('#grid');
+      if (grid) grid.addEventListener('click', async e => {
+        const b = e.target.closest('[data-act]'); if (!b) return;
+        const id = b.closest('.leader').dataset.id;
+        const i = rows.findIndex(r => r.id === id); if (i < 0) return;
+        try {
+          if (b.dataset.act === 'edit') leaderForm(rows[i], nextOrder);
+          if (b.dataset.act === 'delete') {
+            if (await confirmDialog({ title: 'Delete this leader?', message: `${rows[i].name} will be removed from the website. This cannot be undone.`, confirmLabel: 'Delete leader', danger: true })) {
+              await q(sb.from('leaders').delete().eq('id', id)); toast('Leader deleted'); route(true);
+            }
+          }
+          if (b.dataset.act === 'up' || b.dataset.act === 'down') {
+            const j = i + (b.dataset.act === 'up' ? -1 : 1);
+            if (j < 0 || j >= rows.length) return;
+            const arr = rows.slice(); [arr[i], arr[j]] = [arr[j], arr[i]];
+            await Promise.all(arr.map((r, idx) => r.sort_order === idx ? null :
+              sb.from('leaders').update({ sort_order: idx }).eq('id', r.id).then(({ error }) => { if (error) throw error; })).filter(Boolean));
+            route(true);
+          }
+        } catch (ex) { toast(friendlyError(ex), 'err'); }
+      });
+      if (sub === 'new') { history.replaceState(null, '', '#/leadership'); leaderForm(null, nextOrder); }
+    }
+  };
+};
+
+/* Gallery */
+function uploadForm(albums) {
+  openModal({
+    title: 'Upload photos', submitLabel: 'Upload photos', busyLabel: 'Uploading…',
+    body: `
+      <div class="field"><label for="u-album">Album</label>
+        <input id="u-album" name="album" list="album-list" maxlength="80" placeholder="e.g. Conference 2026 (optional)">
+        <datalist id="album-list">${albums.map(a => `<option value="${esc(a)}"></option>`).join('')}</datalist>
+        <p class="help">Albums group photos on the gallery page. Leave blank for none.</p></div>
+      <div class="field"><label for="u-files">Photos</label><input id="u-files" type="file" name="files" accept="image/*" multiple required></div>
+      <div class="progress" id="u-progress" hidden><div class="track"><div class="bar"></div></div><span></span></div>`,
+    async onSubmit(fd, dlg) {
+      const files = [...dlg.querySelector('#u-files').files];
+      if (!files.length) throw new Error('Choose at least one photo.');
+      const album = nz(fd.get('album').trim());
+      const prog = dlg.querySelector('#u-progress'); prog.hidden = false;
+      const failed = []; let done = 0, lastErr = null;
+      for (const f of files) {
+        try {
+          const up = await uploadImage(f, 'gallery');
+          await q(sb.from('gallery').insert({ image_url: up.url, storage_path: up.path, album }));
+        } catch (ex) { failed.push(f.name); lastErr = ex; }
+        done++;
+        prog.querySelector('.bar').style.width = Math.round(done / files.length * 100) + '%';
+        prog.querySelector('span').textContent = done + ' of ' + files.length + ' done';
+      }
+      if (failed.length === files.length) throw lastErr;
+      const ok = files.length - failed.length;
+      toast(ok + (ok === 1 ? ' photo uploaded' : ' photos uploaded') + (failed.length ? '. Could not upload: ' + failed.join(', ') : ''), failed.length ? 'err' : undefined);
+      route(true);
+    }
+  });
+}
+function photoForm(row, albums) {
+  openModal({
+    title: 'Edit photo', submitLabel: 'Save photo',
+    body: `
+      <div class="field"><img src="${esc(row.image_url)}" alt="" style="width:100%;max-height:240px;object-fit:cover;border-radius:10px"></div>
+      <div class="field"><label for="p-cap">Caption</label><input id="p-cap" name="caption" maxlength="200" value="${esc(row.caption)}"></div>
+      <div class="field"><label for="p-album">Album</label><input id="p-album" name="album" list="album-list2" maxlength="80" value="${esc(row.album)}">
+        <datalist id="album-list2">${albums.map(a => `<option value="${esc(a)}"></option>`).join('')}</datalist></div>`,
+    async onSubmit(fd) {
+      await q(sb.from('gallery').update({ caption: nz(fd.get('caption').trim()), album: nz(fd.get('album').trim()) }).eq('id', row.id));
+      toast('Photo saved'); route(true);
+    }
+  });
+}
+
+views.gallery = async sub => {
+  const rows = await q(sb.from('gallery').select('*').order('created_at', { ascending: false }));
+  const albums = [...new Set(rows.map(r => r.album).filter(Boolean))].sort();
+  if (state.galAlbum !== 'all' && !albums.includes(state.galAlbum)) state.galAlbum = 'all';
+  const html = `
+    <div class="page-head">
+      <div><h1>Gallery</h1><p class="lede">Photos are resized automatically before they are uploaded, so large phone photos are fine.</p></div>
+      <button class="btn btn-primary" id="newBtn" type="button">${ICONS.plus} Upload photos</button>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div id="shots"></div>`;
+  return {
+    title: 'Gallery', html,
+    mount() {
+      const chips = $('#chips'), shots = $('#shots');
+      const draw = () => {
+        chips.hidden = !albums.length;
+        chips.innerHTML = ['all', ...albums].map(a => `<button class="chip" type="button" data-a="${esc(a)}" aria-pressed="${state.galAlbum === a}">${a === 'all' ? 'All photos' : esc(a)}</button>`).join('');
+        const shown = rows.filter(r => state.galAlbum === 'all' || r.album === state.galAlbum);
+        shots.innerHTML = shown.length ? `<div class="shots">${shown.map(r => `
+          <figure class="shot" data-id="${esc(r.id)}">
+            <img src="${esc(r.image_url)}" alt="${esc(r.caption || '')}" loading="lazy">
+            <figcaption>${r.caption ? esc(r.caption) : '<span class="muted">No caption</span>'}${r.album ? `<span class="album">${esc(r.album)}</span>` : ''}</figcaption>
+            <div class="shot-actions">
+              <button class="btn btn-quiet btn-sm" type="button" data-act="edit">Edit</button>
+              <button class="btn btn-danger-quiet btn-sm" type="button" data-act="delete">Delete</button>
+            </div>
+          </figure>`).join('')}</div>`
+          : emptyState('No photos yet', 'Upload photos from your events so visitors can see the life of the ministry.', 'Upload photos', 'emptyNew');
+        const eb = $('#emptyNew'); if (eb) eb.onclick = () => uploadForm(albums);
+      };
+      chips.addEventListener('click', e => { const b = e.target.closest('[data-a]'); if (b) { state.galAlbum = b.dataset.a; draw(); } });
+      shots.addEventListener('click', async e => {
+        const b = e.target.closest('[data-act]'); if (!b) return;
+        const row = rows.find(r => r.id === b.closest('.shot').dataset.id); if (!row) return;
+        try {
+          if (b.dataset.act === 'edit') photoForm(row, albums);
+          if (b.dataset.act === 'delete') {
+            if (await confirmDialog({ title: 'Delete this photo?', message: 'It will be removed from the gallery. This cannot be undone.', confirmLabel: 'Delete photo', danger: true })) {
+              if (row.storage_path) await sb.storage.from(BUCKET).remove([row.storage_path]);
+              await q(sb.from('gallery').delete().eq('id', row.id)); toast('Photo deleted'); route(true);
+            }
+          }
+        } catch (ex) { toast(friendlyError(ex), 'err'); }
+      });
+      $('#newBtn').onclick = () => uploadForm(albums);
+      draw();
+      if (sub === 'upload') { history.replaceState(null, '', '#/gallery'); uploadForm(albums); }
+    }
+  };
+};
+
+/* Page content */
+views.pages = async sub => {
+  const key = (sub && has(PAGE_SCHEMA, sub)) ? sub : Object.keys(PAGE_SCHEMA)[0];
+  const schema = PAGE_SCHEMA[key];
+  const rows = await q(sb.from('page_content').select('*').eq('page', key));
+  const byKey = {}; rows.forEach(r => { byKey[r.section_key] = r; });
+  const extra = rows.filter(r => !schema.fields.some(f => f.key === r.section_key));
+  const fields = [
+    ...schema.fields.map(f => ({ ...f, value: byKey[f.key] && byKey[f.key].content != null ? byKey[f.key].content : '', custom: false })),
+    ...extra.map(r => ({ key: r.section_key, label: r.label || r.section_key, type: r.field_type || 'text', value: r.content == null ? '' : r.content, custom: true }))
+  ];
+  const fieldHTML = f => {
+    const id = 'pf-' + f.key;
+    let control;
+    if (f.type === 'textarea') control = `<textarea id="${esc(id)}" name="${esc(f.key)}" rows="${f.rows || 5}" placeholder="${esc(f.default || '')}">${esc(f.value)}</textarea>`;
+    else if (f.type === 'image') control = imagePickerHTML(f.key, f.value, 'pages', 'wide');
+    else control = `<input id="${esc(id)}" name="${esc(f.key)}" value="${esc(f.value)}" placeholder="${esc(f.default || '')}">`;
+    return `<div class="field">
+      <div class="field-head">${f.type === 'image' ? `<span class="lbl">${esc(f.label)}</span>` : `<label for="${esc(id)}">${esc(f.label)}</label>`}
+        ${f.custom ? `<button type="button" class="btn btn-text btn-danger-text" data-remove-field="${esc(f.key)}">Remove section</button>` : ''}</div>
+      ${f.help ? `<p class="help">${esc(f.help)}</p>` : ''}${f.custom ? `<p class="help">Website id: ${esc(key + '.' + f.key)}</p>` : ''}${control}</div>`;
+  };
+  const html = `
+    <div class="page-head"><div><h1>Page content</h1><p class="lede">Change the words and pictures on each page. Empty boxes use the website's built-in text.</p></div></div>
+    <nav class="chips tabs" aria-label="Pages">${Object.keys(PAGE_SCHEMA).map(k => `<a class="chip" href="#/pages/${k}" ${k === key ? 'aria-current="page"' : ''}>${esc(PAGE_SCHEMA[k].label)}</a>`).join('')}</nav>
+    <form id="pageForm" class="panel">
+      <div class="form-body"><p class="lede">${esc(schema.hint || '')}</p>${fields.map(fieldHTML).join('')}</div>
+      <div class="savebar">
+        <span class="note" id="dirtyNote">All changes saved</span>
+        <button class="btn btn-quiet" type="button" id="addField">${ICONS.plus} Add a section</button>
+        <button class="btn btn-primary" type="submit" id="saveBtn" disabled>Save changes</button>
+      </div>
+    </form>`;
+  return {
+    title: 'Page content', html,
+    mount() {
+      const form = $('#pageForm'), note = $('#dirtyNote'), save = $('#saveBtn');
+      wirePickers(form);
+      form.addEventListener('input', () => { state.dirty = true; save.disabled = false; note.textContent = 'You have unsaved changes'; note.classList.add('dirty'); });
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        if ((+form.dataset.uploads || 0) > 0) { toast('Wait for the photo to finish uploading, then save.', 'err'); return; }
+        const fd = new FormData(form);
+        const changes = [];
+        fields.forEach(f => {
+          const v = String(fd.get(f.key) == null ? '' : fd.get(f.key));
+          const nv = f.type === 'image' ? v : v.trim();
+          if (nv !== f.value) changes.push({ page: key, section_key: f.key, label: f.label, field_type: f.type, content: nv });
+        });
+        if (!changes.length) { state.dirty = false; save.disabled = true; note.textContent = 'All changes saved'; note.classList.remove('dirty'); return; }
+        save.disabled = true; save.textContent = 'Saving…';
+        try {
+          await q(sb.from('page_content').upsert(changes, { onConflict: 'page,section_key' }));
+          toast('Changes saved'); route(true);
+        } catch (ex) { toast(friendlyError(ex), 'err'); save.disabled = false; save.textContent = 'Save changes'; }
+      });
+      form.addEventListener('click', async e => {
+        const b = e.target.closest('[data-remove-field]'); if (!b) return;
+        const k = b.dataset.removeField;
+        if (await confirmDialog({ title: 'Remove this section?', message: 'Its text or photo will be deleted from this page.', confirmLabel: 'Remove section', danger: true })) {
+          try { await q(sb.from('page_content').delete().eq('page', key).eq('section_key', k)); toast('Section removed'); state.dirty = false; route(true); }
+          catch (ex) { toast(friendlyError(ex), 'err'); }
+        }
+      });
+      $('#addField').addEventListener('click', () => {
+        openModal({
+          title: 'Add a section', submitLabel: 'Add section',
+          body: `<div class="field"><label for="s-label">Section name</label><input id="s-label" name="label" required maxlength="80" placeholder="e.g. Prayer request note"></div>
+                 <div class="field"><label for="s-type">Type</label><select id="s-type" name="type">
+                   <option value="text">Short text</option><option value="textarea">Paragraph</option><option value="image">Photo</option></select></div>
+                 <p class="help">After you add it, the section shows a website id. Your web developer uses that id to display it on the page.</p>`,
+          async onSubmit(fd2) {
+            const label = fd2.get('label').trim();
+            const slug = label.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 40) || 'section';
+            const taken = new Set([...schema.fields.map(f => f.key), ...rows.map(r => r.section_key)]);
+            let k = 'custom_' + slug, n = 2;
+            while (taken.has(k)) k = 'custom_' + slug + '_' + n++;
+            await q(sb.from('page_content').insert({ page: key, section_key: k, label, field_type: fd2.get('type'), content: '' }));
+            toast('Section added'); state.dirty = false; route(true);
+          }
+        });
+      });
+    }
+  };
+};
+
+/* ---------- router ---------- */
+let routeToken = 0;
+async function route(keepScroll) {
+  const token = ++routeToken;
+  state.dirty = false;
+  const parts = location.hash.replace(/^#\/?/, '').split('/');
+  const id = has(views, parts[0]) ? parts[0] : 'dashboard';
+  document.querySelectorAll('#nav a').forEach(a => { if (a.dataset.nav === id) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+  document.body.classList.remove('nav-open');
+  const view = $('#view');
+  if (!keepScroll) view.innerHTML = '<p class="spinner">Loading…</p>';
+  try {
+    const r = await views[id](parts[1]);
+    if (token !== routeToken) return;
+    const y = window.scrollY;
+    view.innerHTML = r.html;
+    $('#topTitle').textContent = r.title;
+    document.title = r.title + ' | Virtuous Women of Destiny admin';
+    if (r.mount) r.mount();
+    window.scrollTo(0, keepScroll ? y : 0);
+  } catch (ex) {
+    if (token !== routeToken) return;
+    view.innerHTML = `<div class="empty"><h2>Something went wrong</h2><p>${esc(friendlyError(ex))}</p><button class="btn btn-primary" type="button" id="reloadBtn">Reload page</button></div>`;
+    $('#reloadBtn').onclick = () => location.reload();
+  }
+}
+
+/* ---------- auth + boot ---------- */
+function showLogin() { $('#app').hidden = true; $('#login').hidden = false; }
+function enterApp() {
+  $('#login').hidden = true; $('#app').hidden = false;
+  $('#nav').innerHTML = NAV.map(n => `<a href="#/${n.id}" data-nav="${n.id}">${n.icon}<span>${esc(n.label)}</span></a>`).join('');
+  $('#who').textContent = state.user.email || '';
+  if (SITE_URL) { const a = $('#siteLink'); a.href = SITE_URL; a.hidden = false; }
+  route();
+  if (state.recovery) { state.recovery = false; passwordForm(); }
+}
+let currentUid;
+function handleSession(session) {
+  const uid = session && session.user ? session.user.id : null;
+  if (uid === currentUid) return;
+  currentUid = uid;
+  if (uid) { state.user = session.user; enterApp(); } else { state.user = null; showLogin(); }
+}
+function passwordForm() {
+  openModal({
+    title: 'Choose a new password', submitLabel: 'Save password',
+    body: `<div class="field"><label for="np">New password</label><input id="np" name="password" type="password" minlength="8" required autocomplete="new-password"><p class="help">Use at least 8 characters.</p></div>`,
+    async onSubmit(fd) { const { error } = await sb.auth.updateUser({ password: fd.get('password') }); if (error) throw error; toast('Password updated'); }
+  });
+}
+
+$('#menuBtn').innerHTML = ICONS.menu;
+$('#menuBtn').addEventListener('click', () => document.body.classList.add('nav-open'));
+$('#scrim').addEventListener('click', () => document.body.classList.remove('nav-open'));
+$('#signOut').addEventListener('click', async () => { if (sb) await sb.auth.signOut(); });
+window.addEventListener('hashchange', () => route(false));
+window.addEventListener('beforeunload', e => { if (state.dirty) { e.preventDefault(); e.returnValue = ''; } });
+document.addEventListener('click', async e => {
+  const a = e.target.closest('a[href^="#/"]');
+  if (!a || !state.dirty) return;
+  e.preventDefault();
+  if (await confirmDialog({ title: 'Leave without saving?', message: 'You have changes on this page that are not saved.', confirmLabel: 'Discard changes', danger: true })) {
+    state.dirty = false; location.hash = a.getAttribute('href');
+  }
+});
+
+$('#loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const err = $('#loginError'), btn = $('#loginForm [type=submit]');
+  err.textContent = ''; btn.disabled = true; btn.textContent = 'Signing in…';
+  const { error } = await sb.auth.signInWithPassword({ email: $('#email').value.trim(), password: $('#password').value });
+  btn.disabled = false; btn.textContent = 'Sign in';
+  if (error) err.textContent = /invalid login/i.test(error.message) ? 'That email or password is not right. Check both and try again.' : friendlyError(error);
+});
+$('#forgot').addEventListener('click', async () => {
+  const err = $('#loginError'), email = $('#email').value.trim();
+  if (!email) { err.textContent = 'Enter your email above, then select Forgot password.'; return; }
+  const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: location.href.split('#')[0] });
+  err.style.color = error ? '' : 'var(--ok)';
+  err.textContent = error ? friendlyError(error) : 'Check your email for a link to reset your password.';
+});
+
+if (!configured) {
+  showLogin();
+  $('#setupNotice').hidden = false;
+  $('#loginForm [type=submit]').disabled = true;
+  $('#forgot').disabled = true;
+} else {
+  sb.auth.onAuthStateChange((event, session) => {
+    if (event === 'PASSWORD_RECOVERY') state.recovery = true;
+    setTimeout(() => handleSession(session), 0);
+  });
+  sb.auth.getSession().then(({ data }) => handleSession(data.session));
+}
+})();
+</script>
+</body>
+</html>

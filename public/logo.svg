@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 520" role="img" aria-labelledby="title desc">
+  <title id="title">Virtuous Women of Destiny logo</title>
+  <desc id="desc">A crowned woman in prayer surrounded by the initials VWD</desc>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8d477"/><stop offset="1" stop-color="#b97815"/></linearGradient>
+    <linearGradient id="pink" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f02b9b"/><stop offset="1" stop-color="#6a1261"/></linearGradient>
+  </defs>
+  <rect x="14" y="14" width="492" height="492" rx="74" fill="#160b19" stroke="url(#gold)" stroke-width="12"/>
+  <rect x="34" y="34" width="452" height="452" rx="58" fill="#fbf8f1" stroke="#7e156d" stroke-width="12"/>
+  <path d="M112 258c25-110 103-161 194-158 77 2 125 45 142 105-27-35-66-51-105-49-38 2-76 22-97 55-24 38-57 65-134 47z" fill="none" stroke="url(#pink)" stroke-width="9"/>
+  <path d="M290 104l18 27 34-5-12 32 26 22-34 8-3 34-28-21-29 20 3-34-33-9 26-21-12-32 34 6z" fill="url(#pink)" stroke="url(#gold)" stroke-width="5"/>
+  <circle cx="320" cy="91" r="9" fill="#d58a1b"/>
+  <circle cx="371" cy="118" r="9" fill="#d58a1b"/>
+  <path d="M252 184c-37 21-58 57-58 101v84c0 20 15 36 34 36h40v-92c0-40 24-69 48-92-14-27-37-48-64-37z" fill="#120b16"/>
+  <path d="M240 185c-20 11-28 33-25 57l15 75c4 18 20 28 36 23l2-82c0-29-8-54-28-73z" fill="#120b16"/>
+  <path d="M293 191c-25 16-43 44-48 73l-15 83c-3 16 8 31 25 34l42-7c31-5 51-32 47-63l-12-81c-3-18-17-32-39-39z" fill="#120b16"/>
+  <circle cx="269" cy="181" r="29" fill="#120b16"/>
+  <path d="M110 365h300" stroke="url(#gold)" stroke-width="5"/>
+  <text x="260" y="430" text-anchor="middle" font-family="Georgia,serif" font-size="82" font-weight="700" fill="url(#pink)" stroke="url(#gold)" stroke-width="3" paint-order="stroke">VWD</text>
+</svg>
